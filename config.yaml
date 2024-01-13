@@ -1,0 +1,3 @@
+datapath: data/iris.csv
+resultspath: results/
+figurepath: reports/figures/
