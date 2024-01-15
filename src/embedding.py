@@ -10,6 +10,7 @@ import torchvision.transforms as transforms
 from torchvision.datasets import ImageFolder
 from torch.utils.data import DataLoader
 import pickle
+import matplotlib.pyplot as plt
 
 class EmbeddingSpace:
 
@@ -66,22 +67,28 @@ class EmbeddingSpace:
         tensor1 = self.embeddings_dict[image1]
         tensor2 = self.embeddings_dict[image2]
 
-        for alpha in [0, 0.2, 0.4, 0.8, 1]:
+        alphas = [0, 0.2, 0.4, 0.6, 0.8, 1]
+        n_closest = 5
+        fig, axs = plt.subplots(n_closest, len(alphas), figsize=(2 * n_closest, 2 * len(alphas)))
+
+        for i, alpha in enumerate(alphas):
             # Linear interpolation
             interpolated_tensor = torch.lerp(tensor1, tensor2, alpha)
 
             # Compute Euclidean distances
             distances = {key: torch.norm(interpolated_tensor - tensor) for key, tensor in self.embeddings_dict.items()}
 
-            # Get keys of the top 5 closest points
-            top5_closest_keys = sorted(distances, key=distances.get)[:5]
+            # Get file names of the top 5 (or var n_closest) closest images (points)
+            closest_images = sorted(distances, key=distances.get)[:n_closest]
+            
+            for j, key in enumerate(closest_images):
+                axs[j, i].imshow(Image.open(key))
+                axs[j, i].set_title(f"{os.path.basename(key)}\nDistance: {distances[key]:.2f}")
+                axs[j, i].axis('off')
 
-            # Print out the file names of the top 5 closest tensors for the current alpha
-            print(f"\nAlpha = {alpha}")
-            print("Interpolated Tensor:", interpolated_tensor)
-            print("Top 5 Closest File Names:")
-            for key in top5_closest_keys:
-                print(key)
+        plt.tight_layout()
+        plt.savefig('../reports/figures/linear_interpolation_of_embeddings.png')
+        plt.show()
 
 
 # This is needed to run this file as a script rather than import it as a module
