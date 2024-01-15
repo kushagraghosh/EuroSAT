@@ -88,3 +88,7 @@ target/
 
 # Mypy cache
 .mypy_cache/
+
+# Pickle files (.pkl) and serialized PyTorch state dictionaries (.pth) since these are too large files to push to GitHub)
+*.pth
+*.pkl
