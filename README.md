@@ -1,3 +1,6 @@
+## Goals
+Trained a ResNet50 model on the EuroSAT satellite imagery dataset w/ PyTorch. Analyzed the model's encoder by visualizing linear interpolations within the embedding space to illustrate the semantic separation in the learned feature representations.
+
 ## Dataset
 This project utilizes the EuroSAT dataset, which offers satellite images categorized into 10 distinct classes. The dataset is available for public access and can be found on the [EuroSAT GitHub repository](https://github.com/phelber/EuroSAT). I split the data into a training and testing set with an 80%-20% ratio.
 
