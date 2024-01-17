@@ -23,6 +23,6 @@ pip install -r requirements.txt
 ```
 
 ## Linear Interpolation In Latent Space
-Showing nearest neightbors at each interpolation step from left (Industrial) to right (Forest). Inspired by plot in page 7 of [Tile2Vec](https://doi.org/10.48550/arXiv.1805.02855) paper.
+Showing nearest neighbors at each interpolation step from left (Industrial) to right (Forest). Inspired by plot in page 7 of [Tile2Vec](https://doi.org/10.48550/arXiv.1805.02855) paper.
 
 ![Matplotlib plot](https://github.com/kushagraghosh/EuroSAT/blob/master/reports/figures/linear_interpolation_of_embeddings.png?raw=true)
